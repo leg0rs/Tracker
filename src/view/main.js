@@ -1,5 +1,6 @@
 import { AbstractView } from "../common/view.js";
 import onChange from "on-change";
+import { Header } from "../components/header/header.js";
 export class MainView extends AbstractView {
     state = {
         inputdata: undefined,
@@ -23,10 +24,8 @@ export class MainView extends AbstractView {
         this.render();
     }
     render() {
-        const main = document.createElement("div");
-        main.innerHTML = `Текущий набор задач ${this.Appstate.tasks.length}`;
-        this.app.innerHTML = "";
-        this.app.append(main);
+        const header = new Header().render();
+        this.app.prepend(header);
         // this.Appstate.tasks.push({
         //     id: 3,
         //     text: "Какой-то текст задачи2",
