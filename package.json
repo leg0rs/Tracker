@@ -6,11 +6,16 @@
     "author": "Egor Lemeshev",
     "type": "module",
     "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/leg0rs/Tracker-web"
+    },
     "scripts": {
         "build": "rollup -c --watch",
         "start": "live-server"
     },
     "dependencies": {
+        "on-change": "^6.0.0",
         "rollup": "^4.52.3"
     },
     "devDependencies": {

@@ -1,6 +1,6 @@
 import { AbstractView } from "../common/view.js";
 import onChange from "on-change";
-export class MainView extends AbstractView {
+export class DidView extends AbstractView {
     state = {
         inputdata: undefined,
     };
@@ -24,7 +24,7 @@ export class MainView extends AbstractView {
     }
     render() {
         const main = document.createElement("div");
-        main.innerHTML = `Текущий набор задач ${this.Appstate.tasks.length}`;
+        main.innerHTML = `Текущий набор задач ${this.Appstate.tasks.length} равен`;
         this.app.innerHTML = "";
         this.app.append(main);
         // this.Appstate.tasks.push({
