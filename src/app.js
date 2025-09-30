@@ -8,6 +8,7 @@
 
 import { DidView } from "./view/did";
 import { MainView } from "./view/main";
+import { UndoView } from "./view/undo";
 
 class App {
   routes = [
@@ -19,18 +20,20 @@ class App {
       path: "#did",
       view: DidView,
     },
+    {
+      path: "#undo",
+      view: UndoView,
+    },
   ];
   Appstate = {
     tasks: [
       {
         id: 1,
-        text: "Какой-то текст задачи",
-        completed: false,
+        textAndCompleted: ["Какой-то текст задачи", false],
       },
       {
         id: 2,
-        text: "Какой-то текст задачи",
-        completed: false,
+        textAndCompleted: ["Какой-то текст задачи", false],
       },
     ],
   };

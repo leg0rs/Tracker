@@ -8,18 +8,20 @@
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/leg0rs/Tracker-web"
+        "url": "https://github.com/leg0rs/Tracker"
     },
     "scripts": {
-        "build": "rollup -c --watch",
+        "setup": "npm i rollup live-server @rollup/plugin-node-resolve rollup-plugin-import-css --save-dev",
+        "build": "rollup -c",
         "start": "live-server"
     },
     "dependencies": {
-        "on-change": "^6.0.0",
-        "rollup": "^4.52.3"
+        "on-change": "^6.0.0"
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^16.0.1",
+        "live-server": "^1.2.2",
+        "rollup": "^4.52.3",
         "rollup-plugin-import-css": "^4.0.2"
     }
 }

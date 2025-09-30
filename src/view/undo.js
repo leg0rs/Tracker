@@ -2,7 +2,7 @@ import { AbstractView } from "../common/view.js";
 import onChange from "on-change";
 import { Header } from "../components/header/header.js";
 import { RadioButton } from "../components/radio-button/radio-button.js";
-export class MainView extends AbstractView {
+export class UndoView extends AbstractView {
   state = {
     inputdata: undefined,
   };
@@ -25,11 +25,11 @@ export class MainView extends AbstractView {
     // this.render();
   }
   render() {
+    this.app.innerHTML = "";
     const main = document.createElement("div");
     main.classList.add("main");
     main.append(new Header().render());
-    main.append(new RadioButton("main").render());
-    this.app.innerHTML = "";
+    main.append(new RadioButton("undo").render());
     this.app.append(main);
   }
 }

@@ -1,0 +1,6 @@
+.radio-button {
+    display: flex;
+    /* padding: 20px; */
+    justify-content: flex-start;
+    gap: 10px;
+}

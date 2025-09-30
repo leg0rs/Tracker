@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 20px;
-    justify-content: center;
+    padding-bottom: 20px;
+    justify-content: flex-start;
 }
 
 .add-button {
@@ -18,6 +18,11 @@
     justify-content: center;
     flex-shrink: 0;
 }
+
+
+/* .add-button-disable:disabled {
+    opacity: 0.5;
+} */
 
 .add-png {
     max-width: 100%;

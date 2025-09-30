@@ -1,37 +1,35 @@
 import { AbstractView } from "../common/view.js";
 import onChange from "on-change";
+import { Header } from "../components/header/header.js";
+import { RadioButton } from "../components/radio-button/radio-button.js";
 export class DidView extends AbstractView {
-    state = {
-        inputdata: undefined,
-    };
-    l;
-    constructor(Appstate) {
-        super();
-        this.Appstate = Appstate;
-        this.Appstate = onChange(this.Appstate, this.appStateHook.bind(this));
-        this.setTitle("Планировщик задач");
-    }
+  state = {
+    inputdata: undefined,
+  };
+  l;
+  constructor(Appstate) {
+    super();
+    this.Appstate = Appstate;
+    this.Appstate = onChange(this.Appstate, this.appStateHook.bind(this));
+    this.setTitle("Планировщик задач");
+  }
 
-    appStateHook(path) {
-        if (path === "tasks") {
-            localStorage.clear();
-            for (let i of this.Appstate.tasks) {
-                console.log(i);
-                localStorage.setItem(i.id, i.text);
-            }
-        }
-        this.render();
+  appStateHook(path) {
+    if (path === "tasks") {
+      localStorage.clear();
+      for (let i of this.Appstate.tasks) {
+        localStorage.setItem(i.id, i.textAndCompleted);
+      }
+      console.log(localStorage.getItem(1).split(","));
     }
-    render() {
-        const main = document.createElement("div");
-        main.innerHTML = `Текущий набор задач ${this.Appstate.tasks.length} равен`;
-        this.app.innerHTML = "";
-        this.app.append(main);
-        // this.Appstate.tasks.push({
-        //     id: 3,
-        //     text: "Какой-то текст задачи2",
-        //     completed: false,
-        // });
-        // this.Appstate.tasks.splice(1, 1);
-    }
+    // this.render();
+  }
+  render() {
+    this.app.innerHTML = "";
+    const main = document.createElement("div");
+    main.classList.add("main");
+    main.append(new Header().render());
+    main.append(new RadioButton("did").render());
+    this.app.append(main);
+  }
 }
