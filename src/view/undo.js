@@ -2,6 +2,7 @@ import { AbstractView } from "../common/view.js";
 import onChange from "on-change";
 import { Header } from "../components/header/header.js";
 import { RadioButton } from "../components/radio-button/radio-button.js";
+import { Tasks } from "../components/tasks/tasks.js";
 export class UndoView extends AbstractView {
   state = {
     inputdata: undefined,
@@ -25,11 +26,13 @@ export class UndoView extends AbstractView {
     // this.render();
   }
   render() {
-    this.app.innerHTML = "";
+    const state = "undo";
     const main = document.createElement("div");
     main.classList.add("main");
     main.append(new Header().render());
-    main.append(new RadioButton("undo").render());
+    main.append(new RadioButton(state).render());
+    main.append(new Tasks(state, this.Appstate).render());
+    this.app.innerHTML = "";
     this.app.append(main);
   }
 }
