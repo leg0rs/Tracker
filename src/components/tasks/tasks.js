@@ -45,14 +45,22 @@ export class Tasks extends Divcomponent {
       i = Number(i);
       html += `
             <div class="task">
-                <div>
-                    <input type="checkbox" name="taks${i + 1}" id="${i + 1}">
-                    <label for="${i + 1}">${this.end[0][0]}</label>
+                <div class="leftS">
+                    <input type="checkbox" name="taks${i + 1}" id="${
+        i + 1
+      }" class="taskInp" ${this.end[i][1] ? "checked" : ""}>
+                    <label for="${i + 1}">${this.end[i][0]}</label>
                 </div>
                 <button class="del-button"><img src="./static/bin.png" alt="корзина" class="del-png"></button>
             </div>`;
     }
     this.el.innerHTML = html;
+    const inputs = this.el.querySelectorAll(".taskInp");
+    for (let input of inputs) {
+      input.addEventListener("click", () => {
+        console.log(input.checked, input.id);
+      });
+    }
     return this.el;
   }
 }
