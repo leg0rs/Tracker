@@ -7,31 +7,29 @@ export class UndoView extends AbstractView {
   state = {
     inputdata: undefined,
   };
-  l;
   constructor(Appstate) {
     super();
+    this.state = "undo";
     this.Appstate = Appstate;
     this.Appstate = onChange(this.Appstate, this.appStateHook.bind(this));
     this.setTitle("Планировщик задач");
   }
 
   appStateHook(path) {
-    if (path === "tasks") {
+    if (path.slice(0, 5) === "tasks") {
       localStorage.clear();
       for (let i of this.Appstate.tasks) {
         localStorage.setItem(i.id, i.textAndCompleted);
       }
-      console.log(localStorage.getItem(1).split(","));
     }
-    // this.render();
+    this.render();
   }
   render() {
-    const state = "undo";
     const main = document.createElement("div");
     main.classList.add("main");
-    main.append(new Header().render());
-    main.append(new RadioButton(state).render());
-    main.append(new Tasks(state, this.Appstate).render());
+    main.append(new Header(this.Appstate).render());
+    main.append(new RadioButton(this.state).render());
+    main.append(new Tasks(this.state, this.Appstate).render());
     this.app.innerHTML = "";
     this.app.append(main);
   }

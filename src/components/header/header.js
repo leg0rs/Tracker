@@ -1,11 +1,15 @@
 import { Divcomponent } from "../../common/div-component";
 import "./header.css";
 export class Header extends Divcomponent {
-  constructor() {
+  constructor(Appstate) {
     super();
+    this.Appstate = Appstate;
   }
-  addTask() {
-    console.log(1);
+  addTask(input) {
+    this.Appstate.tasks.push({
+      id: localStorage.length + 1,
+      textAndCompleted: [input.value, false],
+    });
   }
   render() {
     this.el.innerHTML = "";
@@ -17,9 +21,12 @@ export class Header extends Divcomponent {
     </button>`;
     const button = this.el.querySelector(".add-button");
     const form = this.el.querySelector("#form");
-
-    button.addEventListener("click", this.addTask.bind(this));
-
+    button.addEventListener("click", this.addTask.bind(this, form));
+    form.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && form.value) {
+        this.addTask(form);
+      }
+    });
     form.addEventListener("input", () => {
       if (form.value) {
         button.classList.remove("deativate");
