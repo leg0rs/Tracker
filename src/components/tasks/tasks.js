@@ -55,13 +55,16 @@ export class Tasks extends Divcomponent {
                 <button class="del-button" id="${id}"><img src="./static/bin.png" alt="корзина" class="del-png"></button>
             </div>`;
     }
+    let n = 0;
 
+    this.Appstate.tasks.forEach((element) => {
+      if (element.textAndCompleted[1] === false) {
+        n++;
+      }
+    });
     html += `
         <div>
-        <p>Осталось ${this.end.reduce(
-          (acc, val) => (val[1] == false ? (acc += 1) : (acc += 0)),
-          0
-        )} задач</p>
+        <p>Осталось ${n} задач</p>
         </div>`;
 
     this.el.innerHTML = html;
